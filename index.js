@@ -26,6 +26,7 @@ async function run() {
         const listingCollection = client.db('PetAdoption').collection('petListion')
         const usersCollection = client.db('PetAdoption').collection('users')
         const adoptCollection = client.db('PetAdoption').collection('adoption')
+        const addpetCollection = client.db('PetAdoption').collection('addpet')
 
         // Get  all petlisting
         app.get('/petlisting', async (req, res) => {
@@ -75,6 +76,12 @@ async function run() {
         app.post('/adoption', async (req, res) => {
             const adopt = req.body;
             const result = await adoptCollection.insertOne(adopt)
+            res.send(result)
+        })
+        // addpet 
+        app.post('/addpet', async (req, res) => {
+            const  addpet = req.body;
+            const result = await addpetCollection.insertOne(addpet)
             res.send(result)
         })
 
