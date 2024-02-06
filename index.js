@@ -80,11 +80,23 @@ async function run() {
         })
         // addpet 
         app.post('/addpet', async (req, res) => {
-            const  addpet = req.body;
+            const addpet = req.body;
             const result = await addpetCollection.insertOne(addpet)
             res.send(result)
         })
-
+        // get my added pet by query
+        app.get('/addpet', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email }
+            const result = await addpetCollection.find(query).toArray()
+            res.send(result)
+        })
+        // single  pet delete
+        app.delete('/addpet/:id', async (req, res) => {
+            const filter = req.params.id
+            const finddelete = await  addpetCollection.deleteOne({ _id: new ObjectId(filter) })
+            res.send(finddelete)
+        })
 
 
         // await client.connect();
