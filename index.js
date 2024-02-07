@@ -27,6 +27,7 @@ async function run() {
         const usersCollection = client.db('PetAdoption').collection('users')
         const adoptCollection = client.db('PetAdoption').collection('adoption')
         const addpetCollection = client.db('PetAdoption').collection('addpet')
+        const  createdonationCollection = client.db('PetAdoption').collection('createDonation')
 
         // Get  all petlisting
         app.get('/petlisting', async (req, res) => {
@@ -97,6 +98,13 @@ async function run() {
             const finddelete = await  addpetCollection.deleteOne({ _id: new ObjectId(filter) })
             res.send(finddelete)
         })
+        // create donation  
+        app.post('/createdonation', async (req, res) => {
+            const donation = req.body;
+            const result = await createdonationCollection.insertOne(donation)
+            res.send(result)
+        })
+
 
 
         // await client.connect();
