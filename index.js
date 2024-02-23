@@ -104,6 +104,12 @@ async function run() {
             const result = await createdonationCollection.insertOne(donation)
             res.send(result)
         })
+        // get all create donation campaign
+        app.get('/createdonation', async (req, res) => {
+            const result = await  createdonationCollection.find().toArray()
+            res.send(result)
+        })
+
 
 
 
