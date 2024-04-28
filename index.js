@@ -5,7 +5,10 @@ require('dotenv').config()
 const port = process.env.PORT || 5000
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
-app.use(corse())
+app.use(corse({
+    origin: ['http://localhost:5000', 'https://pet-adoption-ee50c.web.app'],
+    credentials: true,
+  }));
 app.use(express.json())
 
 
